@@ -54,6 +54,9 @@ window.onload = function() {
         pad.frame = 1;
         pad.rotation = -90;
       };
+      if (game.input.up) {
+        pad.frame = 1;
+      };
     });
 
     game.rootScene.addChild(map);
