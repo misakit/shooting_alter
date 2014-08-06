@@ -56,6 +56,7 @@ window.onload = function() {
       };
       if (game.input.up) {
         pad.frame = 1;
+        pad.rotation = 0;
       };
     });
 
