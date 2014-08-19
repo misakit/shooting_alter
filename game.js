@@ -8,7 +8,7 @@ var player = null;
 
 window.onload = function() {
   game = new Game(320, 320);
-  game.fps = 30;
+  game.fps = 24;
   game.preload('map0.png', 'chara7.png', 'icon0.png', 'pad.png');
   game.onload = function() {
     /*
@@ -76,6 +76,7 @@ window.onload = function() {
     analogPad.y = 215;
     analogPad.addEventListener('enterframe', function(e) {
       if (this.isTouched) {
+        player.frame = 27;
         player.x += this.vx * 4;
         player.y += this.vy * 4;
         if (game.frame % 3 == 0) {
