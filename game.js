@@ -1,7 +1,13 @@
 enchant();
 
+/*
+   global variable
+ */
+var game = null;
+var player = null;
+
 window.onload = function() {
-  var game = new Game(320, 320);
+  game = new Game(320, 320);
   game.fps = 30;
   game.preload('map0.png', 'chara7.png', 'icon0.png', 'pad.png');
   game.onload = function() {
@@ -27,7 +33,7 @@ window.onload = function() {
     map.image = game.assets['map0.png'];
     map.loadData(blocks);
 
-    var player = new Sprite(32, 32);
+    player = new Sprite(32, 32);
     player.x = 150;
     player.y = 170;
     player.frame = 27;
@@ -69,8 +75,9 @@ window.onload = function() {
     analogPad.x = 20;
     analogPad.y = 215;
     analogPad.addEventListener('enterframe', function(e) {
-      if (analogPad.isTouched) {
-        player.x += 0;
+      if (this.isTouched) {
+        player.x += this.vx * 4;
+        player.y += this.vy * 4;
       };
     });
 
