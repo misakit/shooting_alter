@@ -47,7 +47,7 @@ window.onload = function() {
        操作 Pad の作成。
      */
     var pad = new Pad();
-    pad.x = 10;
+    pad.x = 20;
     pad.y = 215;
     pad.addEventListener('enterframe', function(e) {
       pad.frame = 0;
@@ -65,9 +65,14 @@ window.onload = function() {
       };
     });
 
+    var analogPad = new APad();
+    analogPad.x = 190;
+    analogPad.y = 215;
+
     game.rootScene.addChild(map);
     game.rootScene.addChild(player);
     game.rootScene.addChild(pad);
+    game.rootScene.addChild(analogPad);
     game.rootScene.backgroundColor = 'rgb(182, 255, 255)';
   };
   game.start();
