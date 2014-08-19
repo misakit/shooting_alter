@@ -28,12 +28,17 @@ window.onload = function() {
     map.loadData(blocks);
 
     var player = new Sprite(32, 32);
+    player.x = 150;
+    player.y = 170;
     player.frame = 27;
     player.image = game.assets['chara7.png'];
     player.addEventListener('enterframe', function(e) {
       if (game.input.up) {
         if (game.frame % 3 == 0) {
           this.frame++;
+          if (this.frame == 35) {
+            this.frame = 27;
+          }
         };
       };
     });
