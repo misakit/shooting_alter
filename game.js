@@ -78,6 +78,12 @@ window.onload = function() {
       if (this.isTouched) {
         player.x += this.vx * 4;
         player.y += this.vy * 4;
+        if (game.frame % 3 == 0) {
+          player.frame++;
+          if (player.frame == 29) {
+            player.frame = 27;
+          };
+        };
       };
     });
 
