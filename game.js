@@ -8,13 +8,26 @@ var player = null;
 
 window.onload = function() {
   game = new Game(320, 320);
-  game.fps = 24;
+  game.fps = 30;
   game.preload('map0.png', 'chara7.png', 'icon0.png', 'pad.png');
   game.onload = function() {
     /*
        Map の作成
     */
     var blocks = [
+      [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
       [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -35,7 +48,7 @@ window.onload = function() {
 
     player = new Sprite(32, 32);
     player.x = 150;
-    player.y = 170;
+    player.y = 380;
     player.frame = 27;
     player.image = game.assets['chara7.png'];
     player.addEventListener('enterframe', function(e) {
@@ -46,6 +59,18 @@ window.onload = function() {
             this.frame = 27;
           }
         };
+      };
+    });
+
+
+    var stage = new Group();
+    stage.addChild(map);
+    stage.addChild(player);
+    stage.y -= 210;
+    stage.addEventListener('enterframe', function(e) {
+      //console.log(this.y);
+      if (this.y < 150 - player.y) {
+        this.y = 150 - player.y;
       };
     });
 
@@ -88,8 +113,8 @@ window.onload = function() {
       };
     });
 
-    game.rootScene.addChild(map);
-    game.rootScene.addChild(player);
+
+    game.rootScene.addChild(stage);
     game.rootScene.addChild(pad);
     game.rootScene.addChild(analogPad);
     game.rootScene.backgroundColor = 'rgb(182, 255, 255)';
